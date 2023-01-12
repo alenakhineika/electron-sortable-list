@@ -1,0 +1,77 @@
+
+body {
+  background-color: #F4F3F3;
+  padding: 30px;
+  font-weight: 400;
+  font-size: 16px;
+  font-family: sans-serif;
+}
+
+.title {
+  color: #061621;
+}
+
+.wrapper {
+  display: flex;
+  column-gap: 10px;
+  width: 100%;
+}
+
+.wrapper .container {
+  flex-grow: 1;
+}
+
+.library-name {
+  text-align: center;
+  padding: 18px 20px;
+  justify-content: space-between;
+  flex-grow: 1;
+  background-color: #DFDFDF;
+  border: none;
+  box-shadow: 0 0 0 calc(1px / var(--scale-x, 1)) rgba(63, 63, 68, 0.05),
+    0 1px calc(3px / var(--scale-x, 1)) 0 rgba(34, 33, 81, 0.15);
+  border-radius: calc(4px / var(--scale-x, 1));
+  box-sizing: border-box;
+  font-weight: 400;
+  font-size: 16px;
+  font-family: sans-serif;
+}
+
+.list {
+  width: 100%;
+}
+
+.sortable-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+  list-style: none;
+}
+
+.sortable-item {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  align-items: center;
+  padding: 18px 20px;
+  background-color: #fff;
+  box-shadow: 0 0 0 calc(1px / var(--scale-x, 1)) rgba(63, 63, 68, 0.05),
+    0 1px calc(3px / var(--scale-x, 1)) 0 rgba(34, 33, 81, 0.15);
+  border-radius: calc(4px / var(--scale-x, 1));
+  box-sizing: border-box;
+  list-style: none;
+  color: #333;
+}
+
+.dragging-dbd-kit {
+  background-color: #BFD8D5;
+}
+
+.dragging-react-sortable-hoc {
+  pointer-events: 'auto';
+  cursor: 'grabbing';
+  background-color: #B1BED5;
+}

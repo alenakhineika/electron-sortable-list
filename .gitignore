@@ -1,0 +1,12 @@
+npm-debug.log
+build/
+dist/
+node_modules
+.DS_Store
+.idea/
+*.swp
+*.iml
+.cache*
+.user-data
+.nvmrc
+.vscode

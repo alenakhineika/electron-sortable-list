@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "outDir": "dist",
+    "lib": [
+      "dom",
+      "es2019",
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "*": ["node_modules/*"],
+    }
+  },
+  "include": [
+    "src/**/*",
+  ]
+}
