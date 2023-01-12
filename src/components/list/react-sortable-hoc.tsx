@@ -1,14 +1,10 @@
 import React, { useRef, useState } from 'react';
-import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc';
+import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 import { arrayMoveImmutable } from 'array-move';
-import type { DragHandleToolbarProps, SortableItem, SortableListProps, OnSortEndProps } from './../../types';
+import type { SortableItem, SortableListProps, OnSortEndProps } from './../../types';
 
-const DragHandleToolbar = SortableHandle(({ id }: DragHandleToolbarProps) => {
+const SortableItem = SortableElement(({ id }: SortableItem) => {
   return (<li className="sortable-item">Item {id}</li>);
-});
-
-const SortableItem = SortableElement((props: SortableItem) => {
-  return (<DragHandleToolbar {...props} />);
 });
 
 const SortableList = SortableContainer(({ items }: SortableListProps) => {
@@ -24,9 +20,7 @@ export const ReactSortableHocList: React.FunctionComponent<{}> = () => {
   let containerRef = useRef<HTMLDivElement | null>(null);
 
   const onSortEnd = ({ oldIndex, newIndex }: OnSortEndProps) => {
-    if (oldIndex !== newIndex) {
-      setItems((items) => arrayMoveImmutable(items, oldIndex, newIndex));
-    }
+    setItems((items) => arrayMoveImmutable(items, oldIndex, newIndex));
   };
 
   return (
@@ -34,7 +28,6 @@ export const ReactSortableHocList: React.FunctionComponent<{}> = () => {
       <SortableList
         items={items}
         onSortEnd={onSortEnd}
-        useDragHandle
         transitionDuration={0}
         helperContainer={() => (containerRef.current ?? document.body)}
         helperClass="dragging-react-sortable-hoc"

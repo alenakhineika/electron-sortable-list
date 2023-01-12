@@ -4,9 +4,9 @@ import { DndContext, MouseSensor, TouchSensor, useSensor, useSensors } from '@dn
 import type { UniqueIdentifier } from '@dnd-kit/core';
 import { SortableContext, verticalListSortingStrategy, useSortable } from '@dnd-kit/sortable';
 import { CSS as cssDndKit } from '@dnd-kit/utilities';
-import type { DragHandleToolbarProps } from './../../types';
+import type { SortableItemProps, SortableListProps } from './../../types';
 
-function DragHandleToolbar({ id, activeId }: DragHandleToolbarProps) {
+function SortableItem({ id, activeId }: SortableItemProps) {
   const { setNodeRef, transform, transition, listeners } = useSortable({ id });
   const style = {
     transform: cssDndKit.Transform.toString(transform),
@@ -25,15 +25,7 @@ function DragHandleToolbar({ id, activeId }: DragHandleToolbarProps) {
   );
 }
 
-export const DndKitList: React.FunctionComponent<{}> = () => {
-  // SortableContext provides a sorted array of the unique identifiers
-  // associated with the elements that are used by the useSortable hook.
-  // They must be strings or numbers bigger than 0.
-  // It's important that the items prop passed to SortableContext
-  // be sorted in the same order in which the items are rendered.
-  const [items, setItems] = useState<number[]>(
-    () => [0, 1, 2, 3, 4, 5].map((id) => id + 1)
-  );
+const SortableList = ({ items, onSortEnd }: SortableListProps) => {
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
   const getIndex = (id: UniqueIdentifier) => items.indexOf(+id);
   const sensors = useSensors(
@@ -52,13 +44,6 @@ export const DndKitList: React.FunctionComponent<{}> = () => {
         tolerance: 5,
       },
     })
-  );
-
-  const onSortEnd = useCallback(
-    ({ oldIndex, newIndex }) => {
-      setItems((items) => arrayMoveImmutable(items, oldIndex, newIndex));
-    },
-    [items]
   );
 
   return (
@@ -84,10 +69,27 @@ export const DndKitList: React.FunctionComponent<{}> = () => {
       <SortableContext items={items} strategy={verticalListSortingStrategy}>
         <ul className="sortable-list">
           {items.map((id, index) => (
-            <DragHandleToolbar key={`item-${id}`} id={id} activeId={activeId} />
+            <SortableItem key={`item-${id}`} id={id} activeId={activeId} />
           ))}
         </ul>
       </SortableContext>
     </DndContext>
   );
+}
+
+export const DndKitList: React.FunctionComponent<{}> = () => {
+  // The SortableContext unique identifiers
+  // must be strings or numbers bigger than 0.
+  const [items, setItems] = useState<number[]>(
+    () => [0, 1, 2, 3, 4, 5].map((id) => id + 1)
+  );
+  
+  const onSortEnd = useCallback(
+    ({ oldIndex, newIndex }) => {
+      setItems((items) => arrayMoveImmutable(items, oldIndex, newIndex));
+    },
+    [items]
+  );
+
+  return (<SortableList items={items} onSortEnd={onSortEnd} />);
 }
