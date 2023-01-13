@@ -1,33 +1,25 @@
 import React, { useRef, useState } from 'react';
-import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc';
+import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 import { arrayMoveImmutable } from 'array-move';
 import type { SortableItem, SortableListProps, SortProps, SortableComponentProps } from './../../types';
-import { DraggingHandle } from './../button/dragging-handle';
 
-export const DraggableHandle = SortableHandle(() => (<DraggingHandle />));
-
-const SortableItem = SortableElement(({ id, hasDraggHandle }: SortableItem) => (
+const SortableItem = SortableElement(({ id }: SortableItem) => (
   <li className="sortable-item">
     <span>Item {id}</span>
-    <div className="dragging-handle-container">
-      {hasDraggHandle ? <DraggableHandle /> : null}
-    </div>
   </li>
 ));
 
-const SortableList = SortableContainer(({ items, hasDraggHandle }: SortableListProps) => {
+const SortableList = SortableContainer(({ items }: SortableListProps) => {
   return (
     <ul className="sortable-list">
       {items.map((id, index) => (
-        <SortableItem key={`item-${id}`} id={id} index={index} hasDraggHandle={hasDraggHandle} />
+        <SortableItem key={`item-${id}`} id={id} index={index} />
       ))}
     </ul>
   );
 });
 
-export const ReactSortableHocList: React.FunctionComponent<SortableComponentProps> = ({
-  hasDraggHandle,
-}) => {
+export const ReactSortableHocList: React.FunctionComponent<SortableComponentProps> = ({}) => {
   const [items, setItems] = useState<number[]>([0, 1, 2, 3, 4, 5]);
   let containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -44,8 +36,6 @@ export const ReactSortableHocList: React.FunctionComponent<SortableComponentProp
         helperContainer={() => (containerRef.current ?? document.body)}
         helperClass="dragging-react-sortable-hoc"
         distance={10}
-        hasDraggHandle={hasDraggHandle}
-        useDragHandle={hasDraggHandle}
       />
     </div>
   );

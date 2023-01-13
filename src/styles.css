@@ -7,17 +7,35 @@ body {
   font-family: sans-serif;
 }
 
-.title {
-  color: #061621;
+.toolbar {
+  display: flex;
+  width: 100%;
+  line-height: 70px;
 }
 
-.wrapper {
+.title {
+  flex-grow: 1;
+  font-size: 24px;
+}
+
+.toggle {
+  flex-grow: 1;
+}
+
+.toggle label {
+  float: right;
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.content {
   display: flex;
   column-gap: 10px;
   width: 100%;
 }
 
-.wrapper .container {
+.content .container {
   flex-grow: 1;
 }
 
@@ -52,10 +70,9 @@ body {
 
 .sortable-item {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-grow: 1;
-  align-items: center;
+  display: inline-block;
+  text-align: center;
+  line-height: 25px;
   padding: 18px 20px;
   background-color: #fff;
   box-shadow: 0 0 0 calc(1px / var(--scale-x, 1)) rgba(63, 63, 68, 0.05),
@@ -66,8 +83,48 @@ body {
   color: #333;
 }
 
+.sortable-item span {
+  padding-left: 30px;
+}
+
 .dragging-dbd-kit {
   background-color: #BFD8D5;
+}
+
+.dragging-handle-container {
+  float: right;
+  display: flex;
+  width: 30px;
+  min-height: 1px;
+}
+
+.dragging-handle {
+  display: flex;
+  width: 12px;
+  padding: 5px 15px;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  touch-action: none;
+  cursor: var(--cursor, pointer);
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  appearance: none;
+  background-color: transparent;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dragging-handle:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dragging-handle svg {
+  flex: 0 0 auto;
+  margin: auto;
+  height: 100%;
+  overflow: visible;
+  fill: #919eab;
 }
 
 .dragging-react-sortable-hoc {
