@@ -4,13 +4,8 @@ export type ToolbarProps = { id: number };
 
 export type SortableItemProps = ToolbarProps & { activeId?: UniqueIdentifier };
 
-export type SortableListProps = {
-  items: number[];
-  onSortEnd: (props: { oldIndex: number, newIndex: number}) => void };
+export type SortProps = { oldIndex: number; newIndex: number };
 
-export type SortableItem = { id: number; index: number; };
+export type SortableListProps = { items: number[]; onSortEnd: (props: SortProps) => void };
 
-export type OnSortEndProps = {
-  oldIndex: number;
-  newIndex: number;
-};
+export type SortableItem = { id: number; index: number };

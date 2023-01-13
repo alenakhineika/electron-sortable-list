@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 import { arrayMoveImmutable } from 'array-move';
-import type { SortableItem, SortableListProps, OnSortEndProps } from './../../types';
+import type { SortableItem, SortableListProps, SortProps } from './../../types';
 
 const SortableItem = SortableElement(({ id }: SortableItem) => {
   return (<li className="sortable-item">Item {id}</li>);
@@ -19,7 +19,7 @@ export const ReactSortableHocList: React.FunctionComponent<{}> = () => {
   const [items, setItems] = useState<number[]>([0, 1, 2, 3, 4, 5]);
   let containerRef = useRef<HTMLDivElement | null>(null);
 
-  const onSortEnd = ({ oldIndex, newIndex }: OnSortEndProps) => {
+  const onSortEnd = ({ oldIndex, newIndex }: SortProps) => {
     setItems((items) => arrayMoveImmutable(items, oldIndex, newIndex));
   };
 
