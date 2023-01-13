@@ -44,6 +44,10 @@ export const ReactSortableHocList: React.FunctionComponent<SortableComponentProp
         helperContainer={() => (containerRef.current ?? document.body)}
         helperClass="dragging-react-sortable-hoc"
         distance={10}
+        // The useDragHandle is an internal property of SortableContainer
+        // and can not be read by a child.
+        // To make the value accessible,
+        // we pass a duplicate value as hasDraggHandle.
         hasDraggHandle={hasDraggHandle}
         useDragHandle={hasDraggHandle}
       />
