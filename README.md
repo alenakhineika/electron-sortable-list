@@ -2,7 +2,7 @@
 
 The example of how to use `react-sortable-hoc` and `@dnd-kit` libraries in the React application.
 
-<img src="./sortable-libraries.png" alt="Photo from my talk" width="600"/>
+<img src="./sortable-libraries.png" alt="Sortable Lists" width="600"/>
 
 ## Run
 
